@@ -1,0 +1,112 @@
+{
+	"info": {
+		"_postman_id": "4c11f0d6-eba3-47b4-bef6-c98146e85b5b",
+		"name": "Auth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34787583",
+		"_collection_link": "https://www.postman.com/universal-trinity-729970/workspace/be-demo-project/collection/34787583-4c11f0d6-eba3-47b4-bef6-c98146e85b5b?action=share&source=collection_link&creator=34787583"
+	},
+	"item": [
+		{
+			"name": "Basic Usage",
+			"item": [
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userName\" : \"Sonic\",\n    \"pwd\"   : \"123\",\n    \"name\": \"Speed of Sound\",\n    \"isAdmin\": false\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/authorization/register",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"authorization",
+								"register"
+							]
+						},
+						"description": "This endpoint allows users to register for authorization. Upon successful registration, the response will include the user's unique identifier, username, name, and an indicator if the user is an admin.\n\n### Request Body\n\n- userName (string, required): The username of the user.\n    \n- pwd (string, required): The password for the user account.\n    \n- name (string, required): The name of the user.\n    \n\n### Response\n\nThe response will be in JSON format with the following schema:\n\n``` json\n{\n    \"type\": \"object\",\n    \"properties\": {\n        \"userId\": {\n            \"type\": \"integer\"\n        },\n        \"userName\": {\n            \"type\": \"string\"\n        },\n        \"name\": {\n            \"type\": \"string\"\n        },\n        \"isAdmin\": {\n            \"type\": \"boolean\"\n        }\n    }\n}\n\n ```"
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userName\" : \"Sonic\",\n    \"pwd\"   : \"123\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/authorization/login",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"authorization",
+								"login"
+							]
+						},
+						"description": "\nThe `POST /authorization/login` endpoint is used to authenticate and login a user.\n\n### Request Body\n- The request body should be in raw JSON format and include the following parameters:\n  - `userName` (string): The username of the user.\n  - `pwd` (string): The password of the user.\n\n### Response\nThe response will be in JSON format with the following schema:\n```json\n{\n  \"type\": \"object\",\n  \"properties\": {\n    \"userId\": {\n      \"type\": \"number\"\n    },\n    \"userName\": {\n      \"type\": \"string\"\n    },\n    \"name\": {\n      \"type\": \"string\"\n    },\n    \"isAdmin\": {\n      \"type\": \"boolean\"\n    }\n  }\n}\n```\n"
+					},
+					"response": []
+				},
+				{
+					"name": "refresh",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/authorization/refresh",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"authorization",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/authorization/logout",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"authorization",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "New Folder",
+			"item": []
+		}
+	]
+}

@@ -1,0 +1,216 @@
+{
+	"info": {
+		"_postman_id": "e25c6a5c-1b44-438a-9776-b7e601d1364b",
+		"name": "Food (Login Required)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34787583",
+		"_collection_link": "https://www.postman.com/universal-trinity-729970/workspace/be-demo-project/collection/34787583-e25c6a5c-1b44-438a-9776-b7e601d1364b?action=share&source=collection_link&creator=34787583"
+	},
+	"item": [
+		{
+			"name": "Post",
+			"item": [
+				{
+					"name": "newFood",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\" : \"Nước đường\",\n    \"categoryId\": 2000000,\n    \"quantity\": 50,\n    \"price\" : 40000\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/food",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"food"
+							]
+						},
+						"description": "\n### Food POST Request\n\nThis API endpoint is used to create a new food item.\n\n#### Request Body\n- `name` (string): The name of the food item.\n- `categoryId` (number): The category ID to which the food item belongs.\n- `quantity` (number): The quantity of the food item.\n- `price` (number): The price of the food item.\n\n#### Response\nThe response of this request is a JSON schema representing the structure of the response data.\n"
+					},
+					"response": []
+				},
+				{
+					"name": "newCategory",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Nước uống\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseURL}}/category",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"category"
+							]
+						},
+						"description": "\nThis endpoint allows you to create a new category using an HTTP POST request to {{localURL}}/category. The request should include a payload in the raw request body type with the \"name\" field.\n\n### Response\nThe response of this request can be documented as a JSON schema. \n"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get",
+			"item": [
+				{
+					"name": "getAllFood (For Demo Only)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/food/all",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"food",
+								"all"
+							]
+						},
+						"description": "The `GET` request to `/food/all` endpoint retrieves a list of food items. The response is a JSON array containing objects with the following properties:\n\n- `foodId` (number): The unique identifier for the food item.\n    \n- `categoryId` (number): The category ID to which the food item belongs.\n    \n- `name` (string): The name of the food item.\n    \n- `quantity` (number): The available quantity of the food item.\n    \n- `price` (number): The price of the food item.\n    \n- `active` (boolean): Indicates whether the food item is currently active.\n    \n- `createdTime` (string): The timestamp indicating the creation time of the food item.\n    \n- `img` (null): The image of the food item, if available.\n    \n\nThis response can be documented as a JSON schema for the array of food items."
+					},
+					"response": []
+				},
+				{
+					"name": "getFoodById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/food/:id",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"food",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3000000"
+								}
+							]
+						},
+						"description": "\nThe endpoint retrieves information about a specific food item based on the provided ID.\n\n### Response\nThe response will be in JSON format and will have the following schema:\n```json\n{\n    \"type\": \"object\",\n    \"properties\": {\n        \"foodId\": {\n            \"type\": \"integer\"\n        },\n        \"categoryId\": {\n            \"type\": \"integer\"\n        },\n        \"name\": {\n            \"type\": \"string\"\n        },\n        \"quantity\": {\n            \"type\": \"integer\"\n        },\n        \"price\": {\n            \"type\": \"number\"\n        },\n        \"active\": {\n            \"type\": \"boolean\"\n        },\n        \"createdTime\": {\n            \"type\": \"string\"\n        },\n        \"img\": {\n            \"type\": [\"string\", \"null\"]\n        }\n    }\n}\n```\n"
+					},
+					"response": []
+				},
+				{
+					"name": "filteringFood",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/food?categoryId=2000000&minPrice=0&maxPrice=200000&minQuantity=0&maxQuantity=999",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"food"
+							],
+							"query": [
+								{
+									"key": "categoryId",
+									"value": "2000000"
+								},
+								{
+									"key": "minPrice",
+									"value": "0"
+								},
+								{
+									"key": "maxPrice",
+									"value": "200000"
+								},
+								{
+									"key": "minQuantity",
+									"value": "0"
+								},
+								{
+									"key": "maxQuantity",
+									"value": "999"
+								}
+							]
+						},
+						"description": "This endpoint makes an HTTP GET request to retrieve food items based on the provided category ID, minimum and maximum price, and minimum and maximum quantity. The response returns a JSON array containing food items with the following properties:\n\n- `foodId` (number): The ID of the food item.\n    \n- `categoryId` (number): The category ID of the food item.\n    \n- `name` (string): The name of the food item.\n    \n- `quantity` (number): The quantity of the food item.\n    \n- `price` (number): The price of the food item.\n    \n- `active` (boolean): Indicates whether the food item is active.\n    \n- `createdTime` (string): The timestamp of when the food item was created.\n    \n- `img` (null): The image of the food item, if available.\n    \n\nThe response of this request can be documented as a JSON schema."
+					},
+					"response": []
+				},
+				{
+					"name": "getFoodByPage",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/food?page=1&limit=8",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"food"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "limit",
+									"value": "8"
+								}
+							]
+						},
+						"description": "The endpoint retrieves a list of food items with pagination. It accepts query parameters for page number and limit to control the pagination.\n\n### Response\n\nThe response will be a JSON object with the following properties:\n\n- `foods` (array of objects): An array of food items, where each item contains the following properties:\n    - `foodId` (number): The unique identifier for the food item.\n        \n    - `categoryId` (number): The category ID to which the food item belongs.\n        \n    - `name` (string): The name of the food item.\n        \n    - `quantity` (number): The quantity of the food item.\n        \n    - `price` (number): The price of the food item.\n        \n    - `active` (boolean): Indicates whether the food item is active or not.\n        \n    - `createdTime` (string): The timestamp of when the food item was created.\n        \n    - `img` (null or string): The image URL of the food item, if available.\n        \n- `currentPage` (number): The current page number of the paginated results.\n    \n- `totalPages` (number): The total number of pages based on the pagination limit.\n    \n- `totalItems` (number): The total number of food items available.\n    \n\nExample:\n\n``` json\n{\n  \"foods\": [\n    {\n      \"foodId\": 0,\n      \"categoryId\": 0,\n      \"name\": \"\",\n      \"quantity\": 0,\n      \"price\": 0,\n      \"active\": true,\n      \"createdTime\": \"\",\n      \"img\": null\n    }\n  ],\n  \"currentPage\": 0,\n  \"totalPages\": 0,\n  \"totalItems\": 0\n}\n\n ```"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Delete",
+			"item": [
+				{
+					"name": "delete food by id",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseURL}}/food/:id",
+							"host": [
+								"{{baseURL}}"
+							],
+							"path": [
+								"food",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "3000003"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
